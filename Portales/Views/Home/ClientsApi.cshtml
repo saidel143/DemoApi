@@ -1,0 +1,268 @@
+﻿@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li>
+            <a href='@Url.Content("~/Home")'>Inicio</a>
+        </li>
+        <li class="active">Clientes</li>
+    </ol>
+}
+
+@section modals{
+    <div class="uif-modal" id="modalClient"></div>
+}
+
+<br />
+<div class="uif-alert" id="alertClient"></div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="uif-table" data-source='@Url.Content("~/Home/GetClients")' data-title="Lista de Clientes"
+               id="tblClient" data-edit="true" data-delete="true" data-filter="true" data-selectiontype="single" data-serverside="true"
+               data-paginate="true" data-pagesize="true" data-add="true" data-exporttocsv="true" data-exportname="cultura">
+            <thead>
+                <tr>
+                    <th data-property="Id" data-visible="false">Id</th>
+                    <th data-property="DNI">Cédula</th>
+                    <th data-property="Email">Correo</th>
+                    <th data-property="Name">Nombre</th>
+                    <th data-property="Last_Name">Apellidos</th>
+                    <th data-property="Phone">Teléfono</th>
+                    <th data-property="Address">Dirección</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary" id="removeItems" data-role="button" disabled="disabled">
+            <span class="glyphicon glyphicon-trash"></span> Eliminar registros
+        </button>
+    </div>
+</div>
+<br />
+@*<div class="panel panel-primary" id="DataUpload">
+    <div class="panel-heading">
+        <h3 class="panel-title">Attach Resume/CV</h3>
+    </div>
+    <div class="panel-body">
+        <form method="post" action="#" enctype="multipart/form-data">
+            <br />
+            <div class="uif-alert" id="alertDataLoad"></div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="file" id="uploadFile" accept="*" class="uif-inputfile" data-input="true">
+                </div>
+                <div class="col-md-3">
+                    <a id="btnFilesSave" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-cloud-upload"></span>
+                        Save
+                    </a>
+                </div>
+                <div class="col-md-2 pull-right">
+                    <a id="btnDownLoad" class="btn btn-primary" href="#">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                        Download
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>*@
+
+@section Scripts
+{
+    <script>
+
+        function previewImage() {
+            var preview = document.querySelector('#avatar');
+            var file = document.querySelector('#inputControlImage').files[0];
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                preview.src = reader.result;
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+                $('#avatarDescription').html(file.name);
+            }
+        }
+
+        function previewFile() {
+            var file = document.querySelector('#inputControlResume').files[0];
+            if (file) {
+                $('#Resume').val(file.name);
+            }
+        }
+
+        $(document).ready(function () {
+
+            var id = 0;
+
+            $("#tblClient").on('rowAdd', function (event, data) {
+                $('#alertClient').hide();
+                $('#modalClient').appendTo("body").UifModal('show', '@Url.Content("~/Home/ClientApiModal")', 'Agregar Registro');
+            });
+
+            $('#tblClient').on('rowEdit', function (event, data) {
+                $('#alertClient').hide();
+                $('#modalClient').appendTo("body").UifModal('show', '@Url.Content("~/Home/ClientApiModal?id=")' + data.Id, 'Editar Registro');
+
+                var urlDoc = '@Url.Content("~/Home/GetDocument?id=")' + data.Id;
+
+                setTimeout(function () {
+                    $('#modalClient').find("#downloadButton").attr("href", urlDoc);
+                }, 1000);
+
+
+            });
+
+            $('#tblClient').on('rowDelete', function (event, data) {
+                $('#alertClient').hide();
+                $('#modalDelete').appendTo("body").modal('show');
+                id = data.Id;
+            });
+
+            $('#tblClient').on('rowSelected', function (event) {
+                if ($('#tblClient').UifDataTable('getSelected').length > 1) {
+                    $('#removeItems').attr("disabled", false);
+                }
+            });
+
+            $('#modalClient').on('hidden.bs.modal', function () {
+                DetachMaps();
+            });
+
+
+            $('#removeItems').on('click', function (e) {
+                var data = $('#tblClient').UifDataTable('getSelected');
+                var dataTableIds = new Array();
+
+                for (var i in data) {
+                    dataTableIds.push(data[i].Id);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteRange", "Home")',
+                    data: JSON.stringify({ "collection": dataTableIds }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8"
+                }).done(function (result) {
+                    if (result) {
+                        $('#tblClient').UifDataTable();
+                        $("#alertClient").UifAlert('show', 'Se eliminaron correctamente los registros seleccionados', "success");
+                    }
+                    else {
+                        $("#alertClient").UifAlert('show', 'Ocurrió un error al eliminar los registros seleccionados', "danger");
+                    }
+                });
+            });
+
+            $("#btnDeleteModal").on('click', function () {
+                $('#modalDelete').modal('hide');
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteClient", "Home")',
+                    data: JSON.stringify({ "id": id }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                }).done(function (data) {
+                    if (data) {
+                        $('#tblClient').UifDataTable();
+                        $("#alertClient").UifAlert('show', 'Registro eliminado correctamente', "success");
+                    }
+                    else {
+                        $("#alertClient").UifAlert('show', 'Error al eliminar el registro seleccionado', "danger");
+                    }
+                    setTimeout(function () {
+                        $("#alertClient").find('.close').click();
+                    }, 3000);
+                });
+            });
+
+            var Model = {
+                Id: 0,
+                DNI: "",
+                Name: "",
+                Last_Name: "",
+                Email: "",
+                Address: "",
+                Phone: ""
+            };
+
+            $("#modalClient").on('click', '#saveButton', function () {
+
+                if (!$('#modalClient').find("#addClient").valid()) {
+                    return false;
+                }
+                else {
+
+                    Model.Id = $('#modalClient').find("#Id").val();
+                    Model.DNI = $('#modalClient').find("#DNI").val();
+                    Model.Name = $('#modalClient').find("#Name").val();
+                    Model.Last_Name = $('#modalClient').find("#Last_Name").val();
+                    Model.Email = $('#modalClient').find("#Email").val();
+                    Model.Address = $('#modalClient').find("#Address").val();
+                    Model.Phone = $('#modalClient').find("#Phone").val();
+
+                    var token = $('#modalClient').find('input[name=__RequestVerificationToken]').val();
+
+                    var image = document.getElementById("inputControlImage").files[0];
+                    var doc = document.getElementById("inputControlResume").files[0];
+
+                    var form = new FormData();
+                    form.append('image', image);
+                    form.append('document', doc);
+
+                    form.append('Id', Model.Id);
+                    form.append('DNI', Model.DNI);
+                    form.append('Name', Model.Name);
+                    form.append('Last_Name', Model.Last_Name);
+                    form.append('Email', Model.Email);
+                    form.append('Address', Model.Address);
+                    form.append('Phone', Model.Phone);
+
+                    $.ajax({
+                        type: "POST",
+                        mimeType: "multipart/form-data",
+                        url: '@Url.Action("SaveClient", "Home")',
+                        headers: { "__RequestVerificationToken": token },
+                        data: form,
+                        dataType: "json",
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function (data) {
+                            $('#modalClient').UifModal('hide');
+                            if (data != 0) {
+                                $("#alertClient").UifAlert('show', 'Cambios guardados correctamente', "success");
+                                $('#tblClient').UifDataTable();
+                            }
+                            else{
+                                $("#alertClient").UifAlert('show', 'Error de conexion con el servicio', "danger");
+                                $('#tblClient').UifDataTable();
+                            }
+                            setTimeout(function () {
+                                $("#alertClient").find('.close').click();
+                            }, 3000);
+                        }
+                    });
+                }
+            });
+
+            function DetachMaps() {
+                const allScripts = document.getElementsByTagName('script');
+                [].filter.call(allScripts, (scpt) => scpt.src.indexOf('key=AIzaSyDwLrTiKUfZ-c7IIl9-ns2GRQOfgbnIGyY') >= 0)[0].remove();
+                window.google = {};
+            }
+        });
+
+    </script>
+}

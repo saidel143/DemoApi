@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Notify";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Notify</li>
+    </ol>
+}
+<div class="uif-panel" data-title="Notify">
+    <button type="button" class="btn btn-primary" id="btnInit">Iniciar Proceso</button>
+    <button type="button" class="btn btn-primary" id="btnDestroy">Finalizar Proceso</button>
+</div>
+@section Scripts
+{
+
+    <script type="text/javascript">
+
+        $('#btnInit').click(function () {
+            $.UifNotify('show', { 'type': 'info', 'message': 'Iniciando Proceso', 'autoclose': false });
+        });
+
+        $('#btnDestroy').click(function () {
+            $.UifNotify('update', { 'type': 'success', 'message': 'Proceso Finalizado', 'autoclose': true });
+        });
+    </script>
+}

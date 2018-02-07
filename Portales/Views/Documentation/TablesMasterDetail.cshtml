@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "TablesMasterDetail";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Tables Master Detail</li>
+    </ol>
+}
+
+<table class="uif-table" data-source="/Documentation/GetRecordsMaster" id="tableMaster" data-title="Empresas">
+    <thead>
+        <tr>
+            <th data-property="Id">Id</th>
+            <th data-property="Empresa">Empresa</th>
+            <th data-property="Ciudad">Ciudad</th>
+            <th data-property="Pais">País</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<table class="uif-table" id="tableDetail" data-selectiontype="single" data-source="null" data-title="Empleados">
+    <thead>
+        <tr>
+            <th data-property="Id">Id</th>
+            <th data-property="Nombre">Nombre</th>
+            <th data-visible="false" data-property="Apellido">Apellido</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $('#tableMaster').on('rowSelected', function (event, selectedRow) {
+
+            alert('prueba');
+            var controller = "/Documentation/GetRecordDetail?Id=" + selectedRow.Id;
+
+
+            $("#tableDetail").UifDataTable({ source: controller, edit: true });
+
+
+        });
+
+        $('#tableDetail').on('rowSelected', function (event, selectedRow) {
+            alert('prueba');
+        });
+    </script>
+}

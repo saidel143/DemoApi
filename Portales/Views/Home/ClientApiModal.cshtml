@@ -1,0 +1,195 @@
+﻿@model Portales.Models.ClientModel
+
+<style>
+    .pac-container {
+        background-color: #FFF;
+        z-index: 20;
+        position: fixed;
+        display: inline-block;
+        float: left;
+    }
+
+    .modal {
+        z-index: 20;
+    }
+
+    .modal-backdrop {
+        z-index: 10;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<form id="addClient" onsubmit="return false">
+    <div class="uif-modalbody">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="uif-panel">
+            <div class="uif-row">
+                <div class="uif-col-4">
+                    <img src="@Model.AvatarBase64" id="avatar" class="img-responsive" />
+                    <br />
+                    <br />
+                    <label class="btn btn-primary btn-file">
+                        <input type="file" id="inputControlImage" accept="image/*" onchange="previewImage()" class="form-control-file" aria-describedby="avatarDescription" hidden />
+                        <span class="glyphicon glyphicon-cloud-upload"> Browse</span>
+                    </label>
+                    <small id="avatarDescription" class="form-text text-muted">@Model.AvatarMsg</small>
+                </div>
+                <div class="uif-col-8">
+                    <div class="uif-row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label field-required" })
+                            @Html.EditorFor(model => model.Name,
+                            new
+                            {
+                                htmlAttributes =
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Ej.: Saidel"
+                                }
+                            })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Last_Name, htmlAttributes: new { @class = "control-label field-required" })
+                            @Html.EditorFor(model => model.Last_Name,
+                            new
+                            {
+                                htmlAttributes =
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Ej.: Concepción"
+                                }
+                            })
+                            @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="uif-row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.DNI, htmlAttributes: new { @class = "control-label field-required" })
+                            @Html.EditorFor(model => model.DNI,
+                            new
+                            {
+                                htmlAttributes =
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Ej.: 1756836969"
+                                }
+                            })
+                            @Html.ValidationMessageFor(model => model.DNI, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label field-required" })
+
+                            <div class="input-group">
+                                <span class="input-group-addon">@@</span>
+                                @Html.EditorFor(model => model.Email,
+                                new
+                                {
+                                    htmlAttributes =
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Ej.: saidel@gmail.com"
+                                    }
+                                })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="uif-row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label field-required" })
+                            @Html.EditorFor(model => model.Address,
+                            new
+                            {
+                                htmlAttributes =
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Ej.: Ave. Eloy Alfaro"
+                                }
+                            })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label field-required" })
+                            @Html.EditorFor(model => model.Phone,
+                            new
+                            {
+                                htmlAttributes =
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Ej.: 0983102329"
+                                }
+                            })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="uif-row">
+                            <div class="col-md-9">
+                                <div class="col-lg-12 col-sm-12 col-12">
+                                    <br />
+                                    <div class="input-group">
+                                        <label class="input-group-btn">
+                                            <span class="btn btn-primary glyphicon glyphicon-folder-open">
+                                                Browse<input type="file" id="inputControlResume" accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                             class="form-control-file" onchange="previewFile()" hidden />
+                                            </span>
+                                        </label>
+                                        @Html.EditorFor(model => model.Resume,
+                                        new
+                                        {
+                                            htmlAttributes =
+                                            new
+                                            {
+
+                                                @class = "form-control",
+                                                placeholder = "Attach Resume",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Resume, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <br />
+                                <a class="btn btn-default" id="downloadButton" href="#" download>
+                                    <span class="glyphicon glyphicon-floppy-save"></span>
+                                    Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uif-modalbuttons">
+        <button type="button" class="btn btn-danger" id="cancelButton" data-dismiss="modal" data-role="button">
+            <span class="glyphicon glyphicon-remove"></span> Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" id="saveButton" onclick="return false" data-role="button">
+            <span class="glyphicon glyphicon-floppy-save"></span> Guardar
+        </button>
+    </div>
+</form>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwLrTiKUfZ-c7IIl9-ns2GRQOfgbnIGyY&libraries=places&callback=initAutocomplete"></script>
+<script>
+    function initAutocomplete() {
+        var input = document.getElementById('Address');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addDomListener(window, 'load', initAutocomplete);
+    }
+</script>
+

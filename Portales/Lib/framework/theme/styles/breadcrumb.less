@@ -1,0 +1,27 @@
+.breadcrumb {
+	background-color: transparent;
+	margin: 0;
+	height: 50px;
+	line-height: 50px;
+	font-size: 1em;
+	line-height: 2em;
+	a {
+		color: #ffffff;
+	}
+}
+
+
+.breadcrumb>li+li:before {
+	padding: 0 2px;
+}
+
+.breadcrumb>.active {
+	color: #ffffff;
+}
+
+@media @large {
+	.breadcrumb {
+		font-size: 1.3em;
+		line-height: 1.6em;
+	}
+}

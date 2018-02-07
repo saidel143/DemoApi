@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Edición Inline";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Edición Inline</li>
+    </ol>
+}
+
+<table class="uif-table" data-source="/Documentation/GetRecords2" data-title="Empresas" id="tableSingle" data-edit="true" data-delete="true" data-filter="false" data-paginate="false">
+    <thead>
+        <tr>
+            <th data-property="Id">Id</th>
+            <th data-property="Empresa">Empresa</th>
+            <th data-property="Ciudad">Ciudad</th>
+            <th data-property="Pais">País</th>
+            <th data-property="Fecha" data-type="date">Fecha</th>
+            <th data-property="Habilitado" data-type="boolean">Activo</th>
+            <th data-property="Monto">Monto</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<form id="editForm">
+    <div class="uif-inline" id="editAction">
+        @Html.Partial("AbmInline")
+    </div>
+</form>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        var currentEditIndex = 0;
+
+        function RowModel() {
+            this.Empresa;
+            this.Ciudad;
+            this.Pais;
+        }
+
+        $('#tableSingle').on('rowSelected', function (event, data) {
+            bind(data);
+        });
+
+        $('#editAction').on('Next', function () {
+            $('#tableSingle').UifDataTable("next");
+        });
+
+        $('#editAction').on('Previous', function () {
+            $('#tableSingle').UifDataTable("previous");
+        });
+
+        $('#tableSingle').on('rowEdit', function (event, data, position) {
+            currentEditIndex = position;
+            bind(data);
+            $('#editAction').UifInline('show');
+        });
+
+        function bind(vm) {
+            $("#editForm").find("#Empresa").val(vm.Empresa);
+            $("#editForm").find("#Ciudad").val(vm.Ciudad);
+            $("#editForm").find("#Pais").val(vm.Pais);
+        }
+
+
+
+        $('#editAction').on('Save', function () {
+            alert('Se ha lanzado el evento de Save del control InlineEditor');
+        });;
+
+
+    </script>
+}

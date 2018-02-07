@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "DataTables";
+}
+
+<h2>DataTables</h2>
+
+@section styles
+    {
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section scripts
+    {
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.odata.js"></script>
+
+    <script>
+        $(function () {
+            $('#personInfo').dataTable({
+
+                "sPaginationType": "full_numbers",
+                "aLengthMenu": [[10, 20, -1], ["Ten", "Twenty", "All"]],
+                "bProcessing": true,
+                "bServerSide": true,
+                "sAjaxSource": "/odata/Clients",
+                "aoColumns": [
+                                { "mData": "Name" },
+                                { "mData": "Phone" },
+                                { "mData": "Email" },
+                                { "mData": "Last_Name" },
+                                { "mData": "Address" },
+                                { "mData": "DNI" }
+                ],
+                "fnServerData": fnServerOData,
+                "iODataVersion": 3,
+                "bUseODataViaJSONP": false // set to true if using cross-domain requests
+            });
+        });
+    </script>
+}
+
+<div>
+    <table id="personInfo">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Last_Name</th>
+                <th>Address</th>
+                <th>DNI</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+

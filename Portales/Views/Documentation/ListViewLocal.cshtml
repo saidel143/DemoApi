@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "ListView Local Mode";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">ListView</li>
+    </ol>
+}
+<script id="display-template" type="text/template">
+    <div><label>Nombre:</label> {{Nombre}} <span class="label label-warning">{{Ciudad}}</span></div>
+    <div><label>Pais:</label>{{Pais}}</div>
+    <div><label>Empresa:</label> {{NombreEmpresa}} </div>
+</script>
+
+
+<script id="add-template" type="text/template">
+    @Html.Partial("ListViewEditor")
+</script>
+
+
+
+<div class="uif-listview">
+
+
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        var saveCallback = function (deferred, data) {
+
+            data.NombreEmpresa = "Sistran";
+
+            $(".uif-listview").UifListView("addItem", data);
+            deferred.resolve();
+        };
+
+        var deleteCallback = function (deferred, data) {
+            deferred.resolve();
+        };
+
+        $(document).ready(function () {
+            $(".uif-listview").UifListView({
+                customEdit: true,
+                localMode: true,
+                add: true,
+                edit: true,
+                delete: true,
+                displayTemplate: "#display-template",
+                addTemplate: '#add-template',
+                addCallback: saveCallback,
+                deleteCallback: deleteCallback
+            });
+        });
+
+
+        $('.uif-listview').on('rowEdit', function (event, data, index) {
+
+            data.Nombre = "Facundo";
+            data.Ciudad = "Bs As";
+
+            $('.uif-listview').UifListView("editItem", index, data);
+        });
+    </script>
+}

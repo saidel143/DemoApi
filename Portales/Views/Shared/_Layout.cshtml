@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Portales</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="~/Lib/uif-touch-3.3.7/vendors/css/vendors-3.3.7.css" rel="stylesheet" />
+    <link href="~/Lib/uif-touch-3.3.7/uif-touch-3.3.7-default.min.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+    
+</head>
+<body>
+    <div id="uif-spinner">
+        <div class="spinner spinner-three-bounce">
+            <i class="fa fa-circle-o-notch fa-spin fa-4x"></i>
+        </div>
+    </div>
+    <nav>
+        <div class="global-header-logo">
+
+        </div>
+        <div class="scrollable-wrapper">
+            <ul class="main-menu">
+                <li>
+                    <a href="#" class="has-submenu">
+                        <i class="fa fa-star menu-icon"></i>
+                        Menú <i class="fa fa-chevron-down drop-icon"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href='@Url.Action("ClientsApi", "Home")'>
+                                <i class="glyphicon glyphicon-transfer"></i>
+                                Web Api
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page">
+        <header>
+            <div class="row">
+                <div class="col-xs-8">
+                    <a class="btn-toggle-main-menu" href="#">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    @RenderSection("breadcrumb", required: false)
+                </div>
+                <div class="col-xs-4 global-header-notifications">
+                    <div class="dropdown">
+                        <div class="btn dropdown-toggle global-header-notification-button" data-toggle="dropdown">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                        <ul class="dropdown-menu pending-process-dropdown">
+                            <li>
+                                <a class="process" href="#">
+                                    <div>
+                                        <div class="date">23/10 - 15:30hs</div>
+                                        <div class="process-name"> 4587458555 | Emisión </div>
+                                    </div>
+                                </a>
+                                <a class="delete" href="#">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="process" href="#">
+                                    <div>
+                                        <div class="date">23/10 - 15:30hs</div>
+                                        <div class="process-name"> 4587458555 | Emisión </div>
+                                    </div>
+                                </a>
+                                <a class="delete" href="#">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="process" href="#">
+                                    <div>
+                                        <div class="date">23/10 - 15:30hs</div>
+                                        <div class="process-name"> 4587458555 | Emisión </div>
+                                    </div>
+                                </a>
+                                <a class="delete" href="#">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="process" href="#">
+                                    <div>
+                                        <div class="date">23/10 - 15:30hs</div>
+                                        <div class="process-name"> 4587458555 | Emisión </div>
+                                    </div>
+                                </a>
+                                <a class="delete" href="#">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <div class="btn dropdown-toggle global-header-notification-button marked" data-toggle="dropdown">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <div class="btn dropdown-toggle global-header-notification-button" data-toggle="dropdown">
+                            <i class="fa fa-bell"></i>
+                            <div class="notification-counter">
+                                5
+                            </div>
+                        </div>
+                        <ul class="dropdown-menu notifications-dropdown">
+                            <li><a href="#">Action <i class="fa fa-circle"></i></a></li>
+                            <li><a href="#">Another action <i class="fa fa-circle"></i></a></li>
+                            <li><a href="#">Something else here <i class="fa fa-circle"></i></a></li>
+                            <li class="readed"><a href="#">Separated link <i class="fa fa-circle"></i></a></li>
+                            <li><a class="see-all" href="#">ver todas</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <div class="btn dropdown-toggle global-header-notification-button" data-toggle="dropdown">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <ul class="dropdown-menu global-header-dropdown-menu dropdown-menu-right">
+                            <li><a href="@Url.Action("LogOff", "Account")">Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <div class="main-container">
+            <div class="main-container-wrapper">
+                <div class="row global-header-description overflow-hidden">
+                    <div class="col-xs-12" id="globalTitle">
+                        @ViewBag.Title
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 main-content">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            @RenderSection("toolbar", required: false)
+        </footer>
+    </div>   
+
+    <script src="~/Lib/uif-touch-3.3.7/vendors/js/vendors-3.3.7.js"></script>
+    <script src="~/Lib/uif-touch-3.3.7/uif-touch-default-3.3.7.min.js"></script>
+    <script src="~/Lib/uif-touch-3.3.7/uif-touch-3.3.7.es.js"></script>
+
+    @RenderSection("modals", required: false)
+    @RenderSection("scripts", required: false)
+
+    <!-- /.Modal de Eliminación Generico-->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 10px">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-times-circle">
+                        </i>
+                    </button>
+                    <h4 class="modal-title">Eliminar Registro</h4>
+                </div>
+                <div class="modal-body" id="deleteMessageModal">
+                    <p class="text-primary">¿Está seguro que desea eliminar este registro?</p>
+                </div>
+                <div class="modal-footer" style="padding: 10px 20px 10px">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span> Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnDeleteModal">
+                        <span class="glyphicon glyphicon-ok"></span> Aceptar
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</body>
+</html>

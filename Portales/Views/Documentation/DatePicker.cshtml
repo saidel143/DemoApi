@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "DatePicker";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Datepicker</li>
+    </ol>
+}
+
+<script id="display-template" type="text/template">
+    <div><label>Nombre:</label> {{Nombre}} <span class="label label-warning">{{Ciudad}}</span></div>
+    <div><label>Pais:</label>{{Pais}}</div>
+    <div><label>Empresa:</label> {{NombreEmpresa}}</div>
+</script>
+
+<form class="form">
+    <div class="uif-panel" data-title="Datepicker" id="panel">
+        <div class="uif-row">
+            <div class="uif-col-6">
+
+                <label class="field-required">Datepicker con Fecha</label>
+                <input type="text" value="04/11/2015" class="uif-datepicker" id="datepicker" />
+                <br />
+                <button class="btn btn-default" id="btnDisabled" onclick="return false">Disabled</button>
+            </div>
+
+            <div class="uif-col-6">
+
+                <label class="field-required">Datepicker con Hora</label>
+                <input type="text" value="14:30" class="uif-datepicker" data-type="time" data-format="HH:mm:ss" id="datepicker2" />
+
+            </div>
+        </div>
+        <div class="uif-row">
+            <div class="uif-col-12">
+                <div class="form-footer">
+                    <button class="btn btn-default">DEFAULT</button>
+                    <button class="btn btn-primary">PRIMARY</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#btnDisabled').click(function () {
+
+            $('#datepicker').attr('disabled', true);
+        });
+
+        $('#datepicker').on("change", function (event, date) {
+
+
+            console.log(date);
+        });
+
+        $('#datepicker2').on("change", function (event, date) {
+
+
+            console.log(date);
+        });
+    </script>
+}

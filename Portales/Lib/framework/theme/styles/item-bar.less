@@ -1,0 +1,41 @@
+.item-bar {
+    margin-top:15px;
+
+	ul {
+		border: 1px solid #e4e6e8;
+		list-style: none;
+	    padding:0;
+	    margin:0;
+
+	}
+	li {
+	    padding: 20px 9px;
+		border-bottom: 1px solid #e4e6e8;
+	}
+	li:last-child {
+		border-bottom: none;
+	}
+	li:before {
+	    content: "• ";
+	    color:  #e64924;
+	}
+
+	a {
+		color: #292e38;
+		font-weight: bold;
+		margin-left: 8px;
+		span {
+			font-weight: normal;
+			color:#49505e
+		}
+	}
+	a:hover {
+		color: #e64924;
+		text-decoration: none;
+		span {color: #e64924;}
+	}
+	p{
+		margin-left: 20px;
+		margin-bottom: 0;
+	}
+}

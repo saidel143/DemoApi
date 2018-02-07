@@ -1,0 +1,97 @@
+﻿@model Sistran.Core.Framework.UIF.Web.Controllers.SampleDTO
+@{
+    ViewBag.Title = "Wizard";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Wizard</li>
+    </ol>
+}
+<div class="uif-alert" id="alert"></div>
+<form id="form1">
+    <div id="wizard" class="uif-wizard">
+        <div class="uif-step" data-title="Paso General">
+
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    @Html.LabelFor(model => model.Empresa)
+                    @Html.TextBoxFor(model => model.Empresa)
+                    @Html.ValidationMessageFor(model => model.Empresa)
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    @Html.LabelFor(model => model.Ciudad)
+                    @Html.TextBoxFor(model => model.Ciudad)
+                    @Html.ValidationMessageFor(model => model.Ciudad)
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    @Html.LabelFor(model => model.Pais)
+                    @Html.TextBoxFor(model => model.Pais)
+                </div>
+            </div>
+
+        </div>
+        <div class="uif-step" data-title="Riesgo">
+
+            <table class="uif-table" data-source="/Documentation/GetRecords" id="tableSingle" data-add="false" data-edit="false" data-delete="false">
+                <thead>
+                    <tr>
+                        <th data-property="Id">Id</th>
+                        <th data-property="Empresa">Empresa</th>
+                        <th data-property="Ciudad">Ciudad</th>
+                        <th data-property="Pais">País</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="uif-step" data-title="Paso 3">Paso 3</div>
+    </div>
+</form>
+@section Scripts
+{
+    <script>
+        var stepFunction = function (event, currentIndex, newIndex) {
+
+
+            //Valido el primer formulario.
+            if (currentIndex == 0) {
+                if ($("#form1").valid()) {
+                    //Retorno true si el paso es valido, de lo contrario retorno false.
+                    // Si es necesario puedo llamar a $ajax para guardar los datos asociados al paso actual.
+                    return true;
+                }
+                else
+                    return false;
+            }
+
+            //Para los demás pasos, la función devuelve true siempre, en este ejemplo.
+            return true;
+
+        };
+
+        var finishFunction = function (event, currentIndex) {
+            //En esta función se puede validar los pasos anteriores.
+            // Si es necesario puedo llamar a $ajax para guardar los datos en el servidor.
+
+            $("#alert").UifAlert('show', 'Los datos han sido guardado correctamente', 'info');
+
+            //Retorno true si todos los pasos son validos, de lo contrario retorno false.
+            return true;
+
+        }
+
+        $("#wizard").UifWizard({ onStep: stepFunction, onFinish: finishFunction });
+
+
+        $('#tableSingle').on('rowAdd', function (event, data) {
+            alert('Hola Evento');
+        });
+    </script>
+}

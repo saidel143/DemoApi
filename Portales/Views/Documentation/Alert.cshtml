@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Alert";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Alert</li>
+    </ol>
+}
+<div class="uif-panel" data-title="Control de Alerta" id="panel">
+    <div class="uif-alert" id="alert"></div>
+
+    <button type="button" class="btn btn-default" id="showInfo">Mostrar Info</button>
+    <button type="button" class="btn btn-default" id="showSuccess">Mostrar Success</button>
+    <button type="button" class="btn btn-default" id="showWarning">Mostrar Warning</button>
+    <button type="button" class="btn btn-default" id="showDanger">Mostrar Danger</button>
+</div>
+@section Scripts
+{
+    @*<script type="text/javascript">
+            $('#showInfo').click(function () {
+                $("#alert").UifAlert('show', 'Bienvenido a UIF2 Touch!', "info");
+            });
+
+            $('#showSuccess').click(function () {
+                $("#alert").UifAlert('show', 'Bienvenido a UIF2 Touch!', "success");
+            });
+
+            $('#showWarning').click(function () {
+                $("#alert").UifAlert('show', 'Bienvenido a UIF2 Touch!', "warning");
+            });
+
+            $('#showDanger').click(function () {
+                $("#alert").UifAlert('show', 'Bienvenido a UIF2 Touch!', "danger");
+            });
+        </script>*@
+
+    <script src="@Url.Content("~/Scripts/app/controllers/AlertCtrl.js")"></script>
+}

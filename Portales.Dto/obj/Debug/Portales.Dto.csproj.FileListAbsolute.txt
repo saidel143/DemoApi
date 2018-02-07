@@ -1,0 +1,5 @@
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\Portales.Dto\bin\Debug\Portales.Dto.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\Portales.Dto\bin\Debug\Portales.Dto.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\Portales.Dto\obj\Debug\Portales.Dto.csprojResolveAssemblyReference.cache
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\Portales.Dto\obj\Debug\Portales.Dto.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\Portales.Dto\obj\Debug\Portales.Dto.pdb

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "AutoComplete";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Autocomplete</li>
+    </ol>
+}
+<div class="uif-panel" data-title="Autocomplete Control">
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <input class="uif-autocomplete" type="text" data-source="@Url.Action("AutoCompleteSource", "Documentation")" data-displaykey="Empresa" placeholder="Tipea las palabra Mir para probarlo." id="inputtest">
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#inputtest').on('itemSelected', function (event, selectedItem) {
+                alert(JSON.stringify(selectedItem));
+            });
+
+            $('#inputtest').UifAutoComplete('setValue', 'Mirndia');
+        });
+    </script>
+}

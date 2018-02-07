@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "InputFile";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Input File</li>
+    </ol>
+}
+<div class="uif-panel" data-title="Input File"> 
+    <div class="uif-row">
+        <div class="uif-col-6">
+            <label>Multiples Archivos</label>
+            <input type="file" id="inputControlMultiple" class="uif-inputfile" data-input="false" data-text="Elija uno o varios archivos" multiple>
+        </div>
+        <div class="uif-col-6">
+            <label>Un archivo</label>
+            <input type="file" id="inputControlSingle" class="uif-inputfile" data-input="true">
+        </div>
+    </div>
+</div>

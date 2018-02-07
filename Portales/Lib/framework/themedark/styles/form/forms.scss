@@ -1,0 +1,77 @@
+$input-heigth: 39px;
+$btn-text-color: #166fe3;
+
+//
+// LAYOUT
+//
+.form {
+	padding: 15px;
+	background: $light-grey;
+	h4 {
+		font-weight: 700;
+		margin: 0;
+		margin-bottom: 15px;
+	}
+	.icon-title {
+		font-size: 1.4em;
+		vertical-align: top;
+		float: right;
+	}
+	.form-group {
+		margin-bottom: 20px;
+	}
+
+}
+
+.row .form:not(:only-of-type):nth-child(2){
+    background: darken($light-grey, 5%)
+}
+
+.form-control {
+	border-radius: 2px;
+}
+label {
+	font-size: 0.938em;
+	margin-bottom: 8px;
+}
+.form-control,
+input[type=text],
+input[type=password],
+select {
+	height: $input-heigth;
+	border-radius: 0px;
+	border-color: #9da7b3;
+	background: #dee1e6;
+}
+.btn-group-vertical>.btn,
+.btn-group>.btn {
+	height: $input-heigth;
+}
+
+//
+// BUTTONS
+//
+
+.fa-calendar {
+	color: $btn-text-color;
+	font-size: 1.2em;
+}
+
+
+
+.form
+{
+    input[type="text"], input[type="password"], input[type="search"], select, textarea  {
+    width: 100%; 
+    height: $input-heigth;
+	border-radius: 0px;
+	border: 1px solid #9da7b3;
+	background: #dee1e6;
+    padding:10px;
+}
+
+}
+
+
+@import './input-with-button.scss';
+

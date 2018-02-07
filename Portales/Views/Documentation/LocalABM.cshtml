@@ -1,0 +1,175 @@
+﻿@model Sistran.Core.Framework.UIF.Web.Controllers.SampleDTO2
+@{
+    ViewBag.Title = "LocalABM";
+}
+
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Abm con Datasource Local</li>
+    </ol>
+}
+
+@section Toolbar
+{
+    <div class="app-header">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-sm" id="btnSaveAll"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Todo</button>
+        </div>
+    </div>
+}
+
+@section Modals
+{
+    <form id="addForm">
+        <div class="uif-modal" id="modalAdd">
+            <div class="uif-modalbody">
+                @Html.Partial("LocalAbmModal")
+            </div>
+
+            <div class="uif-modalbuttons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnSaveAdd" onclick="return false">Guardar</button>
+            </div>
+        </div>
+    </form>
+    <form id="editForm">
+        <div class="uif-modal" id="modalEdit">
+            <div class="uif-modalbody">
+                @Html.Partial("LocalAbmModal")
+            </div>
+            <div class="uif-modalbuttons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnSaveEdit" onclick="return false">Guardar</button>
+            </div>
+        </div>
+    </form>
+}
+
+<form id="mainForm">
+    <div class="uif-alert" id="alert"></div>
+    <div class="uif-panel" data-title="Abm Compuesto">
+        <div class="uif-row">
+            <div class="uif-col-6">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre)
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
+            <div class="uif-col-6">
+                @Html.LabelFor(model => model.Apellido)
+                @Html.TextBoxFor(model => model.Apellido)
+                @Html.ValidationMessageFor(model => model.Apellido)
+            </div>
+        </div>
+        <table class="uif-table" data-source="null" data-title="Trabajos Realizados" id="tableSingle" data-add="true" data-edit="true" data-delete="true" data-selectiontype="single">
+            <thead>
+                <tr>
+                    <th data-property="Empresa">Empresa</th>
+                    <th data-property="Ciudad">Ciudad</th>
+                    <th data-property="Pais">País</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+</form>
+
+@section Scripts
+{
+    @*<script type="text/javascript">
+
+            var currentEditIndex = 0;
+
+            function RowModel()
+            {
+                this.Empresa;
+                this.Ciudad;
+                this.Pais;
+            }
+
+
+            $('#tableSingle').on('rowAdd', function (event, data) {
+                $('#modalAdd').UifModal('showLocal', 'Agregar');
+            });
+
+            $('#btnSaveAdd').click(function () {
+                $("#addForm").validate();
+
+                if ($("#addForm").valid())
+                {
+                    var rowModel = new RowModel();
+
+                    rowModel.Empresa = $("#addForm").find("#Empresa").val();
+                    rowModel.Ciudad = $("#addForm").find("#Ciudad").val();
+                    rowModel.Pais = $("#addForm").find("#Pais").val();
+
+                    $('#tableSingle').UifDataTable('addRow', rowModel);
+                    $("#addForm").formReset();
+                    $('#modalAdd').UifModal('hide');
+                }
+
+
+            });
+
+            $('#btnSaveEdit').click(function () {
+                $("#editForm").validate();
+
+                if ($("#editForm").valid()) {
+                    var rowModel = new RowModel();
+
+                    rowModel.Empresa = $("#editForm").find("#Empresa").val();
+                    rowModel.Ciudad = $("#editForm").find("#Ciudad").val();
+                    rowModel.Pais = $("#editForm").find("#Pais").val();
+
+                    $('#tableSingle').UifDataTable('editRow', rowModel, currentEditIndex);
+                    $("#editForm").formReset();
+                    $('#modalEdit').UifModal('hide');
+                }
+            });
+
+            $('#tableSingle').on('rowDelete', function (event, data, position) {
+                $('#tableSingle').UifDataTable('deleteRow', position);
+            });
+
+            $('#tableSingle').on('rowEdit', function (event, data, position) {
+                currentEditIndex = position;
+                $("#editForm").find("#Empresa").val(data.Empresa);
+                $("#editForm").find("#Ciudad").val(data.Ciudad);
+                $("#editForm").find("#Pais").val(data.Pais);
+                $('#modalEdit').UifModal('showLocal', 'Editar');
+            });
+
+            $('#btnSaveAll').click(function () {
+
+
+
+                $("#mainForm").validate();
+
+                if ($("#mainForm").valid()) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Documentation/LocalABM",
+                        data: JSON.stringify({ jobs: $("#tableSingle").UifDataTable('getData'), personalData: $("#mainForm").serializeObject() }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8"
+                    }).done(function (data) {
+
+                        if (data.success) {
+                            $("#alert").UifAlert('show', 'Los datos han sido guardado correctamente', 'info');
+                        }
+                    });
+
+                }
+
+
+            });
+
+
+        </script>*@
+    <script src="@Url.Content("~/Scripts/app/controllers/LocalABMCtrl.js")"></script>
+
+}

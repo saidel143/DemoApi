@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "ListView Server Mode";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">ListView</li>
+    </ol>
+}
+
+<script id="display-template" type="text/template">
+    <div><label>Nombre:</label> {{Nombre}} <span class="label label-warning">{{Ciudad}}</span></div>
+    <div><label>Pais:</label>{{Pais}}</div>
+    <div><label>Empresa:</label> {{NombreEmpresa}} </div>
+</script>
+
+
+<script id="add-template" type="text/template">
+    @Html.Partial("ListViewEditor")
+</script>
+
+
+<button id="btn-refresh">Refresh</button>
+
+<div class="uif-panel" data-title="Lista" data-add="true">
+
+    <div class="uif-listview">
+        <div class="footer">
+            <div>
+                <label>Prima</label>
+                $120,000
+            </div>
+            <div>
+                <label>IVA</label>
+                $120,000
+            </div>
+            <div>
+                <label>Gastos</label>
+                $120,000
+            </div>
+            <div>
+                <label>Total</label>
+                $120,000
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        var saveCallback = function (deferred, data) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ListView", "Documentation")',
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                if (data.success) {
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                }
+            });
+        };
+
+        var editCallback = function (deferred, data) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ListViewEdit", "Documentation")',
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                if (data.success) {
+                    deferred.resolve(data.result);
+                } else {
+                    deferred.reject();
+                }
+            });
+        };
+
+
+        var deleteCallback = function (deferred, data) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ListViewDelete", "Documentation")',
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+
+                if (data.success) {
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                }
+            });
+        };
+
+        $(".uif-listview").UifListView({
+            source: '@Url.Action("GetListViewSource", "Documentation")',
+            customDelete: false,
+            customAdd: false,
+            customEdit: false,
+            add: true,
+            edit: true,
+            delete: true,
+            displayTemplate: "#display-template",
+            addTemplate: '#add-template',
+            addCallback: saveCallback,
+            editCallback: editCallback,
+            deleteCallback: deleteCallback
+        });
+
+
+        $('.uif-panel').on("Add", function (event) {
+            alert("Se ha lanzado el evento agregar del panel");
+        });
+
+
+        $('.uif-listview').on('rowAdd', function (event) {
+            alert('CustomAdd');
+        });
+
+        $('.uif-listview').on('rowEdit', function (event, data) {
+            alert(data);
+        });
+
+        $('.uif-listview').on('rowDelete', function (event, data) {
+            alert(data);
+        });
+
+        $("#btn-refresh").click(function () { $(".uif-listview").UifListView("refresh"); });
+
+    </script>
+}

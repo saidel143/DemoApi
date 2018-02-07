@@ -1,0 +1,406 @@
+﻿@{
+    ViewBag.Title = "Quotate";
+}
+<div id="wizard" class="uif-wizard">
+    <div class="uif-step" data-title="Datos Generales">
+        <div class="uif-row">
+            <div class="uif-col-6">
+                <label>Sucursal</label>
+                <select>
+                    <option>CASA MATRIZ</option>
+                </select>
+            </div>
+            <div class="uif-col-6">
+                <label>Ramo</label>
+                <select>
+                    <option>VEHICULO INDIVIDUAL</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="uif-step" data-title="Riesgos">
+
+        <table class="uif-table" data-source="null" data-title="Riesgos" id="tablaRiesgos" data-add="true" data-edit="true" data-delete="true" data-selectiontype="single" data-filter="false" data-paginate="false">
+            <thead>
+                <tr>
+                    <th data-property="Id">Id</th>
+                    <th data-property="Detalle">Detalle</th>
+                    <th data-property="Prima">Prima</th>
+                    <th data-property="Suma">Suma Asegurada</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <table class="uif-table" data-source="null" data-title="Coberturas" id="tablaCoberturas" data-add="true" data-edit="true" data-delete="true" data-selectiontype="single" data-filter="false" data-paginate="false">
+            <thead>
+                <tr>
+                    <th data-property="Id">Id</th>
+                    <th data-property="Detalle">Detalle</th>
+                    <th data-property="Valor">Valor Asegurable</th>
+                    <th data-property="Suma">Suma Asegurada</th>
+                    <th data-property="Prima">Prima</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="botonAgregarProducto" class="btn btn-default add-button" onclick="return false"><span class="glyphicon glyphicon-plus"></span> Producto</button>
+
+
+    </div>
+    <div class="uif-step" data-title="Comisiones">
+
+    </div>
+    <div class="uif-step" data-title="Resumen">
+
+    </div>
+</div>
+
+@section Modals
+{
+    <div class="uif-modal" id="modalRiesgo">
+        <div class="uif-modalbody">
+            <div class="uif-panel">
+                <div class="uif-row">
+                    <div class="uif-col-3">
+                        <label>Marca</label>
+                        <select>
+                            <option>TOYOTA</option>
+                        </select>
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Modelo</label>
+                        <select>
+                            <option>4 RUNNER</option>
+                        </select>
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Descripción</label>
+                        <input type="text" />
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Año</label>
+                        <input type="text" />
+                    </div>
+                </div>
+                <div class="uif-row">
+                    <div class="uif-col-3">
+                        <label>Número de Motor</label>
+                        <input type="text" />
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Número de Chasis</label>
+                        <input type="text" />
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Uso</label>
+                        <select>
+                            <option>PARTICULAR</option>
+                        </select>
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Valor Nuevo</label>
+                        <input type="text" />
+                    </div>
+                </div>
+                <div class="uif-row">
+                    <div class="uif-col-3">
+                        <label>Valor de Mercado</label>
+                        <input type="text" />
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Tipo de Vehículo</label>
+                        <select>
+                            <option>CAMIONETA</option>
+                        </select>
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Tipo de Carrocería</label>
+                        <select>
+                            <option>ALUMINIO</option>
+                        </select>
+                    </div>
+                    <div class="uif-col-3">
+                        <label>Color</label>
+                        <select>
+                            <option>BEIGE</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="uif-modalbuttons">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="btnSaveAdd" onclick="return false">Agregar</button>
+        </div>
+    </div>
+
+    <div class="uif-modal" id="modalCobertura">
+        <div class="uif-modalbody">
+            <ul class="uif-tab">
+                <li class="active"><a href="#tabCobertura">Datos Cobertura</a></li>
+                <li><a href="#tabDescuentos">Descuentos y Recargos</a></li>
+                <li><a href="#tabDeducibles">Deducibles</a></li>
+            </ul>
+            <div class="uif-tab-content">
+                <div class="active" id="tabCobertura">
+                    <div class="uif-row">
+                        <div class="uif-col-3">
+                            <label>Vigencia Desde</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Vigencia hasta</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Días de Vigencia</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Ocupantes</label>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="uif-row">
+                        <div class="uif-col-3">
+                            <label>Suma Asegurada</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Valor Asegurable</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Tipo de Tasa</label>
+                            <select>
+                                <option>TIPO TASA 1</option>
+                            </select>
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Tasa</label>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="uif-row">
+                        <div class="uif-col-3">
+                            <label>Límite Agregado</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Límite Reclamante</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Límite Simple</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Tipo de Asistencia</label>
+                            <select>
+                                <option>TIPO ASISTENCIA 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uif-row">
+                        <div class="uif-col-3">
+                            <label>A Primera Pérdida</label>
+                            <select>
+                                <option>OPCION 1</option>
+                            </select>
+                        </div>
+                        <div class="uif-col-3">
+                            <label>En Exceso de</label>
+                            <input type="text" />
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Tipo Cálculo de Prima</label>
+                            <select>
+                                <option>TIPO CALCULO 1</option>
+                            </select>
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Prima Calculada</label>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="uif-row">
+                        <div class="uif-col-3">
+                            <label>Acumula Prima Total</label>
+                            <select>
+                                <option>OPCION 1</option>
+                            </select>
+                        </div>
+                        <div class="uif-col-3">
+                            <label>Acumula Suma</label>
+                            <select>
+                                <option>OPCION 1</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabDescuentos">
+                    <table class="uif-table" data-source="null" id="tablaDescuentos" data-add="true" data-edit="true" data-delete="true" data-selectiontype="single" data-filter="false" data-paginate="false">
+                        <thead>
+                            <tr>
+                                <th data-property="">Id</th>
+                                <th data-property="">Detalle</th>
+                                <th data-property="">Tipo de Tasa</th>
+                                <th data-property="">Tasa</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <form id="editForm">
+                        <div class="uif-inline" id="inlineDescuentos">
+                            <div class="uif-row">
+                                <div class="uif-col-4">
+                                    <label>Detalle</label>
+                                    <input type="text" />
+                                </div>
+                                <div class="uif-col-4">
+                                    <label>Tipo de Tasa</label>
+                                    <select>
+                                        <option>TIPO TASA 1</option>
+                                    </select>
+                                </div>
+                                <div class="uif-col-4">
+                                    <label>Detalle</label>
+                                    <input type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="tabDeducibles">
+                    <table class="uif-table" data-source="null" id="tablaDeducibles" data-add="true" data-edit="true" data-delete="true" data-selectiontype="single" data-filter="false" data-paginate="false">
+                        <thead>
+                            <tr>
+                                <th data-property="">Id</th>
+                                <th data-property="">Detalle</th>
+                                <th data-property="">Valor Unidad</th>
+                                <th data-property="">Descripción Unidad</th>
+                                <th data-property="">Valor Mínimo</th>
+                                <th data-property="">Descripción Mínimo</th>
+                                <th data-property="">Valor Máximo</th>
+                                <th data-property="">Descripción Máximo</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <form id="editForm">
+                        <div class="uif-inline" id="inlineDeducibles">
+                            <div class="uif-row">
+                                <div class="uif-col-3">
+                                    <label>Detalle</label>
+                                    <input type="text" />
+                                </div>
+                                <div class="uif-col-3">
+                                    <label>Valor Unidad</label>
+                                    <input type="text" />
+                                </div>
+                                <div class="uif-col-3">
+                                    <label>Descripción Unidad</label>
+                                    <input type="text" />
+                                </div>
+                                <div class="uif-col-3">
+                                    <label>Valor Mínimo</label>
+                                    <input type="text" />
+                                </div>
+                            </div>
+                            <div class="uif-row">
+                                <div class="uif-col-3">
+                                    <label>Descripción Mínimo</label>
+                                    <input type="text" />
+                                </div>
+                                <div class="uif-col-3">
+                                    <label>Valor Máximo</label>
+                                    <input type="text" />
+                                </div>
+                                <div class="uif-col-3">
+                                    <label>Descripción Máximo</label>
+                                    <input type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="uif-modalbuttons">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="btnSaveAdd" onclick="return false">Agregar</button>
+        </div>
+    </div>
+
+    <div class="uif-modal" id="modalproducto">
+        <div class="uif-modalbody">
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    <label>Producto</label>
+                    <select>
+                        <option>PRODUCTO 1</option>
+                    </select>
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    <table class="uif-table" data-source="null" id="tablaCoberturasProducto" data-edit="true" data-delete="true" data-selectiontype="single" data-filter="false" data-paginate="false">
+                        <thead>
+                            <tr>
+                                <th data-property="">Id</th>
+                                <th data-property="">Detalle</th>
+                                <th data-property="">Valor Asegurable</th>
+                                <th data-property="">Suma Asegurada</th>
+                                <th data-property="">Prima</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="uif-modalbuttons">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="btnSaveAdd" onclick="return false">Agregar</button>
+        </div>
+    </div>
+
+}
+
+@section Scripts
+{
+    <script>
+        var stepFunction = function (event, currentIndex, newIndex) {
+            return true;
+        };
+
+        var finishFunction = function (event, currentIndex) {
+            $("#alert").UifAlert('show', 'Los datos han sido guardado correctamente', 'info');
+            return true;
+        }
+
+        $("#wizard").UifWizard({ onStep: stepFunction, onFinish: finishFunction });
+
+        $('#tablaRiesgos').on('rowAdd', function (event, data) {
+            $('#modalRiesgo').UifModal('showLocal', 'Agregar Riesgo');
+        });
+
+        $('#tablaCoberturas').on('rowAdd', function (event, data) {
+            $('#modalCobertura').UifModal('showLocal', 'Agregar Cobertura');
+        });
+
+        $('#tablaDescuentos').on('rowAdd', function (event, data) {
+            $('#inlineDescuentos').UifInline('show');
+        });
+
+        $('#tablaDeducibles').on('rowAdd', function (event, data) {
+            $('#inlineDeducibles').UifInline('show');
+        });
+
+        $('#botonAgregarProducto').click(function () {
+            $('#modalproducto').UifModal('showLocal', 'Agregar Producto');
+        });
+
+    </script>
+}

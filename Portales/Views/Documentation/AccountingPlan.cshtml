@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "AccountingPlan";
+}
+
+<div class="uif-panel" data-title="Plan de Cuentas">
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <div id="tree1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="uif-modal" id="modalDetalleCuenta">
+    <div class="uif-modalbody">
+        <div class="uif-row">
+            <div class="uif-col-4">
+                <label>Cuenta Contable</label>
+                <input type="text" />
+            </div>
+            <div class="uif-col-8">
+                <label>Descripción</label>
+                <input type="text" />
+            </div>
+        </div>
+        <div class="uif-row">
+            <div class="uif-col-4">
+                <label>Sucursal</label>
+                <select class="uif-select form-control" id="" data-source="" data-id="" data-name=""></select>
+            </div>
+            <div class="uif-col-4">
+                <label>Naturaleza</label>
+                <select class="uif-select form-control" id="" data-source="" data-id="" data-name=""></select>
+            </div>
+            <div class="uif-col-4">
+                <label>Moneda</label>
+                <select class="uif-select form-control" id="" data-source="" data-id="" data-name=""></select>
+            </div>
+        </div>
+        <div class="uif-row">
+            <div class="uif-col-4">
+                <div class="btn-group btn-block" data-toggle="buttons">
+                    <label class="btn btn-default btn-block">
+                        <span class="glyphicon glyphicon-check"></span><input type="checkbox"> Análisis
+                    </label>
+                </div>
+            </div>
+            <div class="uif-col-4">
+                <div class="btn-group btn-block" data-toggle="buttons">
+                    <label class="btn btn-default btn-block">
+                        <span class="glyphicon glyphicon-check"></span><input type="checkbox"> Centro de Costos
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="uif-row">
+            <div class="uif-col-4">
+                <div class="btn-group btn-block" data-toggle="buttons">
+                    <label class="btn btn-default btn-block">
+                        <span class="glyphicon glyphicon-check"></span><input type="checkbox"> Caja
+                    </label>
+                </div>
+            </div>
+            <div class="uif-col-4">
+                <div class="btn-group btn-block" data-toggle="buttons">
+                    <label class="btn btn-default btn-block">
+                        <span class="glyphicon glyphicon-check"></span><input type="checkbox"> Contabilidad
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uif-modalbuttons">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="btnSaveAdd" onclick="return false">Guardar</button>
+    </div>
+</div>
+
+<nav class="navbar navbar-custom navbar-fixed-bottom" role="navigation">
+    <div class="container footer">
+        <button class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus"></span> Agregar Cuenta</button>
+    </div>
+</nav>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#tree1').treeview({ data: getTree1() });
+
+        $('#tree1').on('nodeSelected', function (event, node) {
+            if (node.nodes == null && node._nodes == null) {
+                $('#modalDetalleCuenta').UifModal('showLocal', 'Detalle de Cuenta');
+            }
+        });
+
+        function getTree1() {
+            // Some logic to retrieve, or generate tree structure
+
+            var tree = [
+                {
+                    text: "1. Activo",
+                    extendible: { id: 55 },
+                    nodes: [
+                        {
+                            text: "Disponible",
+                            nodes: [
+                                {
+                                    text: "Caja",
+                                    nodes: [
+                                        {
+                                            text: "Efectivo",
+                                            nodes: [
+                                                {
+                                                    text: "Moneda Legal"
+                                                },
+                                                {
+                                                    text: "Moneda Extranjera"
+                                                },
+                                                {
+                                                    text: "Tarjeta de Débito"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    text: "2. Pasivos",
+                    nodes: [
+                        {
+                            text: "Cuentas por Pagar"
+                        }
+                    ]
+                },
+                {
+                    text: "3. Capital",
+                    nodes: [
+                        {
+                            text: "Capital Inicial"
+                        }
+                    ]
+                },
+                {
+                    text: "4. Ingresos",
+                    nodes: [
+                        {
+                            text: "Ingreso por Renta"
+                        }
+                    ]
+                },
+                {
+                    text: "5. Gastos y Costos",
+                    nodes: [
+                        {
+                            text: "Publicidad"
+                        }
+                    ]
+                }
+            ];
+            return tree;
+        }
+    </script>
+}
+
+

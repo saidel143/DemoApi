@@ -1,0 +1,60 @@
+﻿@model Sistran.Core.Framework.UIF.Web.Controllers.SampleDTO
+
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("Add", "Documentation", FormMethod.Post, new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST",
+    OnComplete = "onAddComplete"
+},
+                                new { id = "addForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="uif-modalbody">
+        <div class="uif-panel">
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    @Html.LabelFor(model => model.Empresa)
+                    @Html.TextBoxFor(model => model.Empresa)
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    @Html.LabelFor(model => model.Ciudad)
+                    @Html.TextBoxFor(model => model.Ciudad)
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    @Html.LabelFor(model => model.Pais)
+                    @Html.TextBoxFor(model => model.Pais)
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    <label>Fecha</label>
+                    <input type="text" class="uif-datepicker" data-mask="99/99/9999" />
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    <label>Input Search</label>
+                    <input type="text" class="uif-input-search" placeholder="Ingrese el criterio de busqueda aquí." id="inputSearch" />
+                </div>
+            </div>
+            <div class="uif-row">
+                <div class="uif-col-12">
+                    <label>AutoComplete</label>
+                    <input class="uif-autocomplete" type="text" data-source="@Url.Action("AutoCompleteSource", "Documentation")" data-displaykey="Empresa" placeholder="Nombre de Empresa" id="inputtest">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uif-modalbuttons">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+}

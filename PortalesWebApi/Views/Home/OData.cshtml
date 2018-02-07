@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "OData";
+}
+
+<h2>OData</h2>
+
+@section styles
+    {
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/autocomplete.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" />
+    <link href="~/Scripts/jtable/themes/metro/purple/jtable.min.css" rel="stylesheet" />
+}
+
+@section scripts
+    {
+    <script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+    <script src="~/Scripts/jtable/jquery.jtable.min.js"></script>
+
+    <script>
+        $(function () {
+
+            $('#PersonContainer').jtable({
+                title: 'Lista de Clientes',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                multiSorting: true,
+                defaultSorting: 'Name desc',
+                actions: {
+                    listAction: getListData,
+                    deleteAction: deleteItem,
+                    createAction: createItem,
+                    updateAction: updateItem
+                },
+                fields: {
+                    Id: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    DNI: {
+                        title: 'DNI'
+                    },
+                    Name: {
+                        title: 'Name'
+                    },
+                    Last_Name: {
+                        title: 'Last_Name'
+                    },
+                    Email: {
+                        title: 'Email'
+                    },
+                    Address: {
+                        title: 'Address'
+                    },
+                    Phone: {
+                        title: 'Phone'
+                    }
+                }
+            });
+            $('#PersonContainer').jtable('load');
+
+            function getListData(postData, jtParams) {
+
+                var ret;
+                var query = "/odata/Clients?$" //root uri
+                //+ "?$select=ID,Name,Email,Phone" //reduce the payload to what we need
+                + "inlinecount=allpages"
+                + "&$orderby=" + jtParams.jtSorting.replace(' DESC', ' desc').replace(' ASC', ' asc')
+                + "&$skip=" + jtParams.jtStartIndex
+                + "&$top=" + jtParams.jtPageSize
+                //+ "&$format=json" //give me json... will be used in newer OData
+                //+ "&$callback=callback"; //this is my callback for future
+                return $.Deferred(function ($dfd) {
+                    $.ajax({
+                        url: query,
+                        type: 'GET',
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        data: postData,
+                        success: function (data) {
+                            ret = {
+                                'Result': "OK",
+                                'Records': data.value,
+                                'TotalRecordCount': data['odata.count']
+                            };
+                            $dfd.resolve(ret);
+                        },
+                        error: function () {
+                            $dfd.reject();
+                        }
+                    });
+                });
+            }
+
+            function createItem(postData) {
+                var ret;
+                return $.Deferred(function ($dfd) {
+                    $.ajax({
+                        url: '/odata/Clients',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        data: postData,
+                        success: function (data) {
+                            ret = {
+                                'Result': "OK",
+                                'Record': data
+                            };
+                            $dfd.resolve(ret);
+                        },
+                        error: function () {
+                            $dfd.reject();
+                        }
+                    });
+                });
+            }
+
+
+            function updateItem(item) {
+                var ret;
+                return $.Deferred(function ($dfd) {
+                    $.ajax({
+                        url: '/odata/Clients(' + getParameterByName(item, 'Id') + ')',
+                        type: 'PATCH',
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ "Name": getParameterByName(item, 'Name') }),
+                        success: function (data) {
+                            ret = {
+                                'Result': "OK",
+                                'Record': data
+                            };
+                            $dfd.resolve(ret);
+                        },
+                        error: function () {
+                            $dfd.reject();
+                        }
+                    });
+                });
+            }
+
+            function getParameterByName(str, name) {
+                var sURLVariables = str.split('&');
+                for (var i = 0; i < sURLVariables.length; i++) {
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == name) {
+                        return sParameterName[1];
+                    }
+                }
+            }
+
+            function deleteItem(item) {
+                return $.Deferred(function ($dfd) {
+                    $.ajax({
+                        url: '/odata/Clients(' + item.Id + ')',
+                        type: 'DELETE',
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        data: item,
+                        success: function (data) {
+                            $dfd.resolve({ 'Result': "OK" });
+                        },
+                        error: function () {
+                            $dfd.reject();
+                        }
+                    });
+                });
+            }
+
+            $('#txtSearch').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/odata/Clients',
+                        type: 'GET',
+                        cache: false,
+                        data: request,
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        success: function (json) {
+                            // call autocomplete callback method with results
+                            console.log(json.value);
+                            response($.map(json.value, function (item, index) {
+                                return {
+                                    label: item.Name,
+                                    value: item.Id
+                                }
+                            }));
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            //alert('error - ' + textStatus);
+                            console.log('error', textStatus, errorThrown);
+                        }
+                    });
+                },
+                minLength: 3,
+                select: function (event, ui) {
+                    alert('you have selected ' + ui.item.label + ' Id: ' + ui.item.value);
+                    $('#txtSearch').val(ui.item.label);
+                    return false;
+                }
+            })
+
+        });
+    </script>
+}
+
+<div>
+    <div id="PersonContainer"></div>
+</div>
+
+<input type="text" id="txtSearch" class="form-control" placeholder="Autocomplete" />

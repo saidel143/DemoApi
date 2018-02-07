@@ -1,0 +1,29 @@
+.input-with-buttons {
+	display: flex;
+	input[type=text],
+	input[type=password] {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	button {
+
+		border-radius: 0;
+		padding: 0 15px;
+		height: $input-heigth;
+	}
+	.btn-group .btn {
+		padding: 0 7px;
+	}
+	.btn {
+		margin-left: 10px;
+		color: #fff;
+		.caret {
+			color: $btn-text-color;
+		}
+		i {
+			color: $btn-text-color;
+			font-size: 1.2em;
+		}
+	}
+
+}

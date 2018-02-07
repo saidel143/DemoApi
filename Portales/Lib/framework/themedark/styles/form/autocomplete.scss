@@ -1,0 +1,24 @@
+﻿.uif-autocomplete-group {
+    position: relative;
+    width: 100%;
+    .input-group-addon {
+        border: none;
+        background: transparent;
+        position: absolute;
+        right: 15px;
+        top: 5px;
+        z-index: 999;
+        color: $grey;
+    }
+    .tt-dropdown-menu {
+        color: $light-grey;
+        background: $grey;
+    }
+    .tt-dataset-inputtest_autocomplete {
+        .tt-cursor, .tt-suggestion:hover {
+            color: $grey;
+            background-color: $light-grey;
+        }
+
+    }
+}

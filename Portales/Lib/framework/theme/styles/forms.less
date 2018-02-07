@@ -1,0 +1,126 @@
+@input-heigth: 36px;
+@btn-text-color: lighten(@main-color, 15%);
+
+//
+// LAYOUT
+//
+
+.form-control {
+	border-radius: 2px;
+}
+label {
+	font-size: 13px;
+	margin-bottom: 6px;
+}
+.form-control,
+input[type=text],
+input[type=password],
+select {
+	height: @input-heigth;
+	border-radius: 0px;
+	border-color: #e0e2e3;
+}
+.btn-group-vertical>.btn,
+.btn-group>.btn {
+	height: @input-heigth;
+}
+
+//
+// BUTTONS
+//
+
+.fa-calendar {
+	color: @btn-text-color;
+	font-size: 1.2em;
+}
+
+
+//
+// INPUT WITH BUTTONS
+//
+.input-with-buttons {
+	display: flex;
+	input[type=text],
+	input[type=password] {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	button {
+		color: @btn-text-color;
+		border-radius: 0;
+		padding: 0 15px;
+		height: @input-heigth;
+	}
+	.btn-group .btn {
+		padding: 0 7px;
+	}
+	.btn {
+		margin-left: 10px;
+		color: @main-font-color;
+		.caret {
+			color: @btn-text-color;
+		}
+		i {
+			color: @btn-text-color;
+			font-size: 1.2em;
+		}
+	}
+
+}
+
+//VALIDATORS
+
+
+.field-validation-error {
+  color: #fff;
+  font-weight: 300;
+  font-size: 85%;
+  background-color: @danger;
+  padding: 3px 12px;
+  width: 100%;
+  display: inline-block;
+}
+
+.validation-summary-errors {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+/*input.input-validation-error {
+    border: 1px solid #b94a48;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}*/
+
+div[class^="uif-col"] input[type="text"], div[class^="uif-col"] input[type="password"], div[class^="uif-col"] input[type="search"], div[class^="uif-col"] select, div[class^="uif-col"] textarea {
+    display: block;
+    width: 100%;
+    
+    padding: 6px 12px;
+    font-size: 13px;
+    
+    
+    border: 1px solid #cccccc;
+    border-radius: 0px;
+   
+  
+}

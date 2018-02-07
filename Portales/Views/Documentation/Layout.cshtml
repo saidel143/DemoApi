@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Layout";
+}
+<div class="uif-panel" data-title="Layout" id="panel">
+    <div class="uif-row">
+        <div class="uif-col-6">
+
+            <label>Texto</label>
+            <input type="text" placeholder="Campo">
+            <span>El campo ingresado es incorrecto</span>
+
+        </div>
+        <div class="uif-col-6">
+            <label>Texto</label>
+            <input type="text" placeholder="Campo">
+        </div>
+    </div>
+    <div class="uif-row">
+        <div class="uif-col-3">
+
+            <label>Texto</label>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+
+        </div>
+        <div class="uif-col-3">
+
+            <label>Texto</label>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+
+        </div>
+        <div class="uif-col-3">
+
+            <label>Texto</label>
+            <input type="text" placeholder="Campo">
+
+        </div>
+        <div class="uif-col-3">
+
+            <label>Texto</label>
+            <textarea rows="10"></textarea>
+
+        </div>
+    </div>
+    <div class="uif-row">
+        <div class="uif-col-3 uif-offset-6">
+            <label>Setear Titulo Panel</label>
+            <input type="text" placeholder="Escriba el título del Panel" id="inputTitle">
+            <br />
+            <button class="btn btn-primary" id="btnPanel">Setear Titulo Panel</button>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-custom navbar-fixed-bottom" role="navigation">
+    <div class="container footer">
+
+        <a class="btn btn-primary" role="button">Guardar</a>
+        <a class="btn btn-default" role="button">Cancelar</a>
+
+
+    </div>
+</nav>
+
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#btnPanel").click(function () {
+                $('#panel').UifPanel({ title: $('#inputTitle').val() });
+            });
+
+        });
+    </script>
+}

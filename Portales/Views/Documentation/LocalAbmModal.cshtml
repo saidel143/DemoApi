@@ -1,0 +1,23 @@
+﻿@model Sistran.Core.Framework.UIF.Web.Controllers.SampleDTO
+<div class="uif-panel">
+    <div class="uif-row">
+        <div class="uif-col-12">
+            @Html.LabelFor(model => model.Empresa)
+            @Html.TextBoxFor(model => model.Empresa)
+            @Html.ValidationMessageFor(model => model.Empresa)
+        </div>
+    </div>
+    <div class="uif-row">
+        <div class="uif-col-12">
+            @Html.LabelFor(model => model.Ciudad)
+            @Html.TextBoxFor(model => model.Ciudad)
+            @Html.ValidationMessageFor(model => model.Ciudad)
+        </div>
+    </div>
+    <div class="uif-row">
+        <div class="uif-col-12">
+            @Html.LabelFor(model => model.Pais)
+            @Html.TextBoxFor(model => model.Pais)
+        </div>
+    </div>
+</div>

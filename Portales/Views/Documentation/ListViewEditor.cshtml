@@ -1,0 +1,31 @@
+﻿@model Sistran.Core.Framework.UIF.Web.Controllers.ListViewDTO
+<div class="uif-row">
+
+    <div class="uif-col-4">
+        @Html.HiddenFor(model => model.Id)
+        @Html.LabelFor(model => model.Nombre)
+        @Html.TextBoxFor(model => model.Nombre)
+        @Html.ValidationMessageFor(model => model.Nombre)
+    </div>
+    <div class="uif-col-4">
+        @Html.LabelFor(model => model.Ciudad)
+        @Html.TextBoxFor(model => model.Ciudad)
+        @Html.ValidationMessageFor(model => model.Ciudad)
+    </div>
+    <div class="uif-col-4">
+        @Html.LabelFor(model => model.Pais)
+        @Html.TextBoxFor(model => model.Pais)
+        @Html.ValidationMessageFor(model => model.Pais)
+    </div>
+</div>
+<div class="uif-row">
+    <div class="uif-col-6">
+        @Html.LabelFor(model => model.Monto)
+        @Html.TextBoxFor(model => model.Monto)
+        @Html.ValidationMessageFor(model => model.Monto)
+    </div>
+    <div class="uif-col-6">
+        <label>Empresa</label>
+        <select class="uif-select form-control" id="select1" name="EmpresaId" data-source='@Url.Action("GetListViewSource", "Documentation")' data-id="Id" data-name="Empresa"></select>
+    </div>
+</div>

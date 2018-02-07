@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AdvancedSearch", "Documentation", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken();
+    <div class="row-fluid">
+        <div class="span12">
+
+            <input type="text" class="uif-advancedsearch" id="personaId" data-source="/Documentation/GetRecordsforAdvancedSearch" data-columns='["Id", "Empresa", "Ciudad", "Pais"]'>
+            <p></p>
+
+
+        </div>
+        <div class="span12">
+            <input type="submit" value="Guardar" class="btn" />
+        </div>
+    </div>
+
+}

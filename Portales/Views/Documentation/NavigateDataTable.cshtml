@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Navegación en Tablas";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Navegación en Tablas</li>
+    </ol>
+}
+@section Modals
+{
+    <form id="editForm">
+        <div class="uif-modal" id="modalEdit">
+            <div class="uif-modalbody">
+                @Html.Partial("LocalAbmModal")
+            </div>
+            <div class="uif-modalbuttons">
+                <div class="pull-left">
+                    <button class="btn btn-success" id="btnPrevious" onclick="return false"><<</button>
+                    <button class="btn btn-success" id="btnNext" onclick="return false">>></button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnSaveEdit" onclick="return false">Guardar</button>
+            </div>
+        </div>
+    </form>
+}
+
+<table class="uif-table" data-source="/Documentation/GetRecords" id="tableSingle" data-edit="true" data-selectiontype="single" data-pagesize="false">
+    <thead>
+        <tr>
+            <th data-property="Id">Id</th>
+            <th data-property="Empresa">Empresa</th>
+            <th data-property="Ciudad">Ciudad</th>
+            <th data-property="Pais">País</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        var currentEditIndex = 0;
+
+        function RowModel() {
+            this.Empresa;
+            this.Ciudad;
+            this.Pais;
+        }
+
+        $('#tableSingle').on('rowSelected', function (event, data) {
+            bind(data);
+        });
+
+        $("#btnNext").click(function () {
+            $('#tableSingle').UifDataTable("next");
+        });
+
+        $("#btnPrevious").click(function () {
+            $('#tableSingle').UifDataTable("previous");
+        });
+
+        $('#tableSingle').on('rowEdit', function (event, data, position) {
+            currentEditIndex = position;
+            bind(data);
+            $('#modalEdit').UifModal('showLocal', 'Editar');
+        });
+
+        function bind(vm) {
+            $("#editForm").find("#Empresa").val(vm.Empresa);
+            $("#editForm").find("#Ciudad").val(vm.Ciudad);
+            $("#editForm").find("#Pais").val(vm.Pais);
+        }
+    </script>
+}

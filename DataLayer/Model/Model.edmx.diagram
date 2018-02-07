@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f0c3a035311496282687c65e7d1b5c7" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Bill" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Details" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_BillDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ClientBill" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CategoryProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProductDetails" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.Log" Width="1.5" PointX="6.875" PointY="4.25" />
+        <EntityTypeShape EntityType="Model.FileClient" Width="1.5" PointX="9.875" PointY="3.125" />
+        <AssociationConnector Association="Model.ClientFile" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

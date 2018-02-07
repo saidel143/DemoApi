@@ -1,0 +1,98 @@
+.card-list {
+	display: flex;
+  	flex-direction: column;
+  	background: #f3f4f8;
+  	.content {
+	    overflow: hidden;
+	    display: initial;
+	    background: #f3f4f8;
+  	}
+	.item {
+		font-size: .875em;
+		padding: 15px 13px;
+		min-height: 87px;
+		background: #ffffff;
+		border-bottom: 1px solid #e0e2e3;
+		line-height: 1.55em;
+
+		min-height: 62px;
+		.columns {
+			display: flex;
+			flex-wrap: wrap;
+			>div {
+				flex: 1;
+			}
+			div:nth-child(n + 2) {
+				flex-grow: 0;
+			}
+		}
+
+	    .alert-wrapper {
+	      width: 100%;
+	      flex: none;
+	    }
+		.label-warning {
+			background-color: @danger;
+			padding: .2em .6em .2em;
+			margin-left: .5em;
+			font-weight: 400;
+		}
+		label {
+			font-size: 1em;
+			font-weight: 300;
+			margin: 0;
+		}
+		.buttons {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+            padding-right: 20px;
+		}
+		.card-button {
+			color: #8e969c;
+			border: 1px solid;
+			min-width:30px;
+			height: 30px;
+			border-radius: 15px;
+			position: relative;
+			background: #ffffff;
+			cursor: pointer;
+			display: inline-block;
+			i {
+                position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    font-size: 14px;
+                    transform: translate(-50%,-50%);
+			}
+		}
+		.card-button:last-child {
+			margin-left: 5px;
+		}
+        .card-button:hover {
+            background: #788087;
+            color: #ffffff;
+        }
+
+	}
+	.card:hover {
+		background: #f9fafb;
+	}
+    .footer {
+		color: #ffffff;
+		display: flex;
+		font-weight: bold;
+		text-align: left;
+		padding: 18px 21px;
+		background-color: multiply(lighten(@main-color, 50%), #cccccc);
+		div {
+			width: 25%;
+		}
+		label {
+			width: 100%;
+			font-weight: 300;
+			font-size: 1.3em;
+			margin: 0;
+		}
+	}
+}

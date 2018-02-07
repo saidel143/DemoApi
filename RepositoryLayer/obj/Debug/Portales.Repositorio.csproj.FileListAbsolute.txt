@@ -1,0 +1,10 @@
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\bin\Debug\Portales.Repositorio.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\bin\Debug\Portales.Repositorio.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\bin\Debug\EntityFramework.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\bin\Debug\Portales.Dal.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\bin\Debug\Portales.Dal.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\bin\Debug\EntityFramework.xml
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\obj\Debug\Portales.Repositorio.csprojResolveAssemblyReference.cache
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\obj\Debug\Portales.Repositorio.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\RepositoryLayer\obj\Debug\Portales.Repositorio.pdb

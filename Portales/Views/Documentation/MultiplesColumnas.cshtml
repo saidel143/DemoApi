@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "MultiplesColumnas";
+}
+<div class="uif-panel" data-title="Tablas con multiples Columnas" id="panel">
+    <div class="uif-row">
+        <div class="uif-col-4">
+            <select class="uif-col-12">
+                <option>Valor1</option>
+                <option>Valor2</option>
+                <option>Valor3</option>
+            </select>
+        </div>
+        <div class="uif-col-4">
+            <select class="uif-col-12">
+                <option>Valor1</option>
+                <option>Valor2</option>
+                <option>Valor3</option>
+            </select>
+        </div>
+        <div class="uif-col-4">
+            <input type="text" class="uif-input-search" placeholder="Ingrese el criterio de busqueda aquí." id="inputSearch" />
+        </div>
+    </div>
+
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <table class="uif-table" data-source="/Documentation/Tabla1Source" id="tabla1" data-selectiontype="multiple">
+                <thead>
+                    <tr>
+                        <th data-property="Id">Id</th>
+                        <th data-property="Columna1">Columna1</th>
+                        <th data-property="Columna2">Columna2</th>
+                        <th data-property="Columna3">Columna3</th>
+                        <th data-property="Columna4">Columna4</th>
+                        <th data-property="Columna5">Columna5</th>
+                        <th data-property="Columna6">Columna6</th>
+                        <th data-property="Columna7">Columna7</th>
+                        <th data-property="Columna8">Columna8</th>
+                        <th data-property="Columna9">Columna9</th>
+                        <th data-property="Columna10">Columna10</th>
+                        <th data-property="Columna11">Columna11</th>
+                        <th data-property="Columna12">Columna12</th>
+                        <th data-property="Columna13">Columna13</th>
+                        <th data-property="Columna14">Columna14</th>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $('#inputSearch').on('buttonClick', function (event, selectedText) {
+            alert(selectedText);
+        });
+    </script>
+}

@@ -1,0 +1,12 @@
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\Portales.Dal.dll.config
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\Portales.Dal.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\Portales.Dal.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\EntityFramework.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\EntityFramework.xml
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\bin\Debug\es\EntityFramework.SqlServer.resources.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\obj\Debug\Portales.Dal.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\obj\Debug\Portales.Dal.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DataLayer\obj\Debug\Portales.Dal.csprojResolveAssemblyReference.cache

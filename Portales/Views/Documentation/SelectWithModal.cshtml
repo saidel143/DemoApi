@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "SelectWithModal";
+}
+<div class="uif-modal" id="modal2">
+</div>
+<div class="uif-panel" data-title="Grilla Editable">
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <select class="uif-select form-control" id="select1" data-source="/Documentation/SelectSource" data-id="Id" data-name="Empresa"></select>
+        </div>
+    </div>
+
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <button class="btn btn-primary" id="btnOpen">Abrir Modal</button>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#btnOpen').click(function (event, data) {
+            $('#modal2').UifModal('show', '/Documentation/Add', 'Titulo de la ventana');
+        });
+
+        function onAddComplete(data) {
+            json = $.parseJSON(data.responseText);
+
+            if (json.success) {
+                $('#modal2').UifModal('hide');
+            }
+        }
+    </script>
+}

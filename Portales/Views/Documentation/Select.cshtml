@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Select";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Select</li>
+    </ol>
+}
+
+<div class="uif-panel" data-title="Select Control">
+    <ul class="uif-tab">
+        <li class="active"><a href="#tabSingle">Select Simple</a></li>
+        <li><a href="#tabSelected">Select Seleccionado</a></li>
+        <li><a href="#tabDepended">Selects anidados</a></li>
+    </ul>
+    <form id="form">
+        <div class="uif-tab-content">
+            <div class="active" id="tabSingle">
+                <div class="uif-row">
+                    <div class="uif-col-4">
+                        <select class="uif-select form-control" id="select1" data-source="/Documentation/SelectSource" data-id="Id" data-name="Empresa" name="select1"></select>
+                    </div>
+                </div>
+            </div>
+            <div id="tabSelected">
+                <div class="uif-row">
+                    <div class="uif-col-4">
+                        <select class="uif-select form-control" id="select2" data-source="/Documentation/SelectSource" data-id="Id" data-name="Empresa" data-selectedid="0"></select>
+                        <span class="help-block">Seleccionado Client Side</span>
+                    </div>
+                </div>
+                <div class="uif-row">
+                    <div class="uif-col-4">
+                        <select class="uif-select form-control" id="select6" data-source="/Documentation/SelectSourceWithSelected" data-id="Id" data-name="Empresa"></select>
+                        <span class="help-block">Seleccionado Server Side</span>
+                    </div>
+                </div>
+            </div>
+            <div id="tabDepended">
+                <div class="uif-row">
+                    <div class="uif-col-4">
+                        <select class="uif-select form-control" id="select3" data-source="/Documentation/SelectSource" data-id="Id" data-name="Empresa"></select>
+                    </div>
+
+
+
+                    <div class="uif-col-4">
+                        <select class="uif-select form-control" id="select4" data-id="Id" data-name="Empresa"></select>
+                    </div>
+
+
+                    <div class="uif-col-4">
+                        <select class="uif-select form-control" id="select5" data-id="Id" data-name="Empresa"></select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $('#select3').on('itemSelected', function (event, selectedItem) {
+
+            if (selectedItem.Id > 0) {
+                var controller = "/Documentation/SelectSourceWithParameter?Id=" + selectedItem.Id;
+                $("#select4").UifSelect({ source: controller });
+            }
+            else {
+                $("#select4").UifSelect();
+                $("#select5").UifSelect();
+            }
+        });
+
+        $('#select4').on('itemSelected', function (event, selectedItem) {
+            if (selectedItem.Id > 0) {
+                var controller = "/Documentation/SelectSourceWithParameter?Id=" + selectedItem.Id;
+                $("#select5").UifSelect({ source: controller });
+            }
+            else {
+                $("#select5").UifSelect();
+            }
+        });
+    </script>
+}

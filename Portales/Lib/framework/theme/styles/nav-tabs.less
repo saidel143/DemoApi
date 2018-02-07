@@ -1,0 +1,32 @@
+.nav-tabs {
+	margin-top: 1em;
+    font-size: 0.875em;
+	padding-left: 15px;
+    margin-left: -15px;
+	li {
+		a {
+			color: #292e38;
+			border-radius: 0;
+			padding: 0px 15px;
+			height: 37px;
+			display: block;
+			line-height: 2.5em;
+		}
+	}
+}
+
+.nav-tabs li.active {
+	a, a:hover {
+		color: @active-color;
+		font-weight: 700;
+	}
+}
+
+.nav-tabs>li>a:hover {
+    border-color: transparent;
+	color: @active-color;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}

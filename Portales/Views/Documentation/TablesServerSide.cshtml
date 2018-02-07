@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Paginación Server Side";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Server Side Pagging</li>
+    </ol>
+}
+<table class="uif-table" data-title="Server Side" data-source="/Documentation/GetRecordsWithPagging" id="tableSingle" data-exporttocsv="true" data-exportname="cultura" data-add="true" data-edit="false" data-delete="false" data-filter="true" data-selectiontype="single" data-serverside="true">
+    <thead>
+        <tr>
+            <th data-property="Id">Id</th>
+            <th data-property="Empresa">Empresa</th>
+            <th data-property="Ciudad">Ciudad</th>
+            <th data-property="Pais">País</th>
+            <th data-property="Monto" data-type="currency">Monto</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>

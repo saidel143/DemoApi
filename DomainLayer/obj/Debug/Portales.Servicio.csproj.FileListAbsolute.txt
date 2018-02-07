@@ -1,0 +1,11 @@
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\Portales.Servicio.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\Portales.Servicio.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\Portales.Dal.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\Portales.Repositorio.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\Portales.Dal.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\Portales.Repositorio.pdb
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\EntityFramework.xml
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\obj\Debug\Portales.Servicio.csprojResolveAssemblyReference.cache
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\obj\Debug\Portales.Servicio.dll
+C:\Users\sconcepcion\Source\Workspaces\DemoPortales\Source\DomainLayer\obj\Debug\Portales.Servicio.pdb

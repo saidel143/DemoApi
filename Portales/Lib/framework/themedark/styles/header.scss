@@ -1,0 +1,30 @@
+header {
+    height: 60px;
+    width: 100%;
+  .nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+  }
+
+    .button {
+    margin-right: 1em;
+        width: 36px;
+        height: 36px;
+        border-radius: 18px;
+        background: #2a2d34;
+        display: block;
+        text-align: center;
+        line-height: 36px;
+    color: #7e8796;
+    }
+  .button:last-child {
+    margin-right: 0;
+  }
+    .button-big {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    line-height: 50px;
+    }
+}

@@ -1,0 +1,64 @@
+.content {
+	background: $dark-blue;
+	.big-buttons-wrapper {
+		display: flex;
+		max-height: 96px;
+		border-top: 1px solid #565f70;
+		a {
+			display: flex;
+			align-items: center;
+			color:#fff;
+			background-color: $dark-blue;
+			border-right: 1px solid #565f70;
+			flex-grow: 1;
+			text-align: center;
+			min-height: 95px;
+			div {
+				width: 100%;
+			}
+
+		}
+		a:last-child {
+			border-right: 0;
+		}
+	}
+
+	.small-buttons-wrapper {
+		display: flex;
+		flex-direction: column;
+		max-height: 190px;
+
+		.buttons-row {
+			display: flex;
+
+		}
+		a {
+			display: flex;
+			align-items: center;
+			color:#fff;
+			font-weight: 700;
+			background-color: $blue;
+			width: 33.333333%;
+			text-align: center;
+			min-height: 95px;
+			border-right: 1px solid $dark-blue;
+			border-bottom: 1px solid $dark-blue;
+			div {
+				width: 100%;
+				i {
+					font-size: 1.4em;
+				}
+			}
+
+		}
+		a:last-child {
+			border-right: 0;
+		}
+		.light {
+			color: $dark-blue;
+			background: $light-blue;
+			border-right: 0;
+		}
+	}
+
+}

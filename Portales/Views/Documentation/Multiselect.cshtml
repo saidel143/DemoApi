@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Multiselect";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Multiselect</li>
+    </ol>
+}
+<div class="uif-panel" data-title="MultiSelect Control">
+    <ul class="uif-tab">
+        <li class="active"><a href="#tabSingle">MultiSelect</a></li>
+        <li><a href="#tabSelected">MultiSelect PreSeleccionado</a></li>
+        <li><a href="#tabDepended">MultiSelect anidados</a></li>
+    </ul>
+    <div class="uif-tab-content">
+        <div class="active" id="tabSingle">
+            <div class="uif-row">
+                <div class="uif-col-4">
+                    <select class="uif-multiselect form-control" id="select1" data-source="/Documentation/MultiselectSource" data-id="Id" data-name="Empresa" multiple="multiple"></select>
+                </div>
+            </div>
+        </div>
+        <div id="tabSelected">
+            <div class="uif-row">
+                <div class="uif-col-4">
+                    <select class="uif-multiselect form-control" id="select2" data-source="/Documentation/MultiselectSource" data-id="Id" data-name="Empresa" multiple="multiple"></select>
+                </div>
+            </div>
+        </div>
+        <div id="tabDepended">
+            <div class="uif-row">
+                <div class="uif-col-6">
+                    <select class="uif-multiselect form-control" id="select3" data-source="/Documentation/MultiselectSource" data-id="Id" data-name="Empresa" multiple="multiple"></select>
+                </div>
+                <div class="uif-col-6">
+                    <select class="uif-multiselect form-control" id="select4" data-id="Id" data-name="Empresa" multiple="multiple"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="uif-row">
+
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#select2').on('binded', function () {
+
+            $('#select2').UifMultiSelect('setSelected', [2, 4, 6]);
+        });
+
+        $('#select1').on('itemSelected', function (event, selectedItems) {
+
+            alert(selectedItems);
+        });
+
+        $('#select3').on('itemSelected', function (event, selectedItems) {
+
+            var controller = "/Documentation/MultiselectSource";
+            $("#select4").UifMultiSelect({ source: controller });
+        });
+    </script>
+}

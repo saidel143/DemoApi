@@ -1,0 +1,30 @@
+.title {
+  font-size: 1.1em;
+  line-height: 37px;
+  background: $blue;
+  color: #fff;
+  padding: 0 15px;
+  max-height: 37px;
+  i {
+    color: #fff;
+    margin-right: .5em;
+  }
+  .uif-row{
+    .bg-blue:not(:only-of-type):nth-child(1){
+       background: $blue;
+    }
+    .bg-blue:not(:only-of-type):nth-child(2){
+       background: darken($blue, 5%);
+    }
+    .bg-blue:not(:only-of-type):nth-child(3){
+      background: darken($blue, 10%);
+    }
+  }
+  select {
+   height:27px;
+    border: 0 !important;
+    width: 80% !important;
+    background: darken($blue, 20%) !important;
+  }
+
+}

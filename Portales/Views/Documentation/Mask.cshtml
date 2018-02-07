@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Mask";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Mask</li>
+    </ol>
+}
+<div class="uif-panel" data-title="Mask" id="panel">
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <label>Moneda</label>
+            <input type="text" data-pattern="000,00" class="uif-mask" placeholder="___,__" id="example1">
+        </div>
+    </div>
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <label>Monto</label>
+            <input type="text" id="example3">
+        </div>
+    </div>
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <label>Dirección Ip</label>
+            <input type="text" id="example2" placeholder="___.___.___.___" />
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $('#example2').UifMask({
+            pattern: '0ZZ.0ZZ.0ZZ.0ZZ', options: {
+                translation: {
+                    'Z': {
+                        pattern: /[0-9]/, optional: true
+                    }
+                }
+            }
+        });
+
+
+        $('#example3').UifMask({ pattern: '000000000000.00', options: { reverse: true } });
+    </script>
+
+}

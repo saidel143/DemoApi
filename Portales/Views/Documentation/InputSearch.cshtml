@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "InputSearch";
+    Layout = "~/Views/Shared/_UIFLayout-r2.cshtml";
+}
+
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Input Search</li>
+    </ol>
+}
+
+<div class="uif-panel" data-title="Datepicker" id="panel">
+    <div class="uif-row">
+        <div class="uif-col-3">
+
+            <label>InputSearch</label>
+            <input type="text" class="uif-input-search" id="input" />
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#input').on("search", function (event, value) {
+
+            alert("El valor dentro del control es: " + value);
+        });
+
+        //$('#datepicker').on("dateChanged.datepicker", function (event, date) {
+        //    alert(date);
+        //});
+    </script>
+}
+
+
+
+

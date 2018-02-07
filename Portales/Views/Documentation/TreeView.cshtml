@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "TreeView";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">TreeView</li>
+    </ol>
+}
+@section Toolbar
+{
+    <div class="app-header">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary" id="btnCreateNode">Crear Nodo</button>
+            <button type="button" class="btn btn-default" id="btnEditNode">Editar Nodo</button>
+            <button type="button" class="btn btn-danger" id="btnDeleteNode">Borrar Nodo</button>
+        </div>
+    </div>
+}
+@section Modals
+{
+
+    <form id="addForm">
+        <div class="uif-modal" id="modalAdd">
+            <div class="uif-modalbody">
+                <div class="uif-panel">
+                    <div class="uif-row">
+                        <div class="uif-col-12">
+                            <label>Nombre de Nodo</label>
+                            <input id="Nombre" name="Nombre" type="text" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uif-modalbuttons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnSaveAdd" onclick="return false">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+    <form id="editForm">
+        <div class="uif-modal" id="modalEdit">
+            <div class="uif-modalbody">
+                <div class="uif-row">
+                    <div class="uif-col-12">
+                        <label>Nombre de Nodo</label>
+                        <input id="Nombre" name="Nombre" type="text" required />
+                    </div>
+                </div>
+            </div>
+            <div class="uif-modalbuttons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnSaveEdit" onclick="return false">Guardar</button>
+            </div>
+        </div>
+    </form>
+}
+<div class="uif-panel" data-title="TreeView">
+    <div class="uif-row">
+
+        <div class="uif-col-12">
+            <div class="uif-alert" id="alert"></div>
+
+            <div id="tree" data-source="/Documentation/TreeViewData" class="uif-treeview"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#alert").UifAlert('show', 'Seleccione un nodo para operar.', 'info');
+        });
+
+        var selected;
+        var nextId = 100;
+
+        $('#btnCreateNode').click(function () {
+            selected = $("#tree").UifTreeView('getSelected');
+
+            if (selected.length > 0) {
+                $('#modalAdd').UifModal('showLocal', 'Agregar');
+            }
+        });
+
+        $('#btnEditNode').click(function () {
+            selected = $("#tree").UifTreeView('getSelected');
+
+            if (selected.length > 0) {
+                $('#modalEdit').UifModal('showLocal', 'Editar');
+            }
+        });
+
+        $('#btnDeleteNode').click(function () {
+            selected = $("#tree").UifTreeView('getSelected');
+
+            if (selected.length > 0) {
+                $("#tree").UifTreeView('deleteNode', selected);
+            }
+        });
+
+        $('#btnSaveAdd').click(function () {
+            $("#addForm").validate();
+
+            if ($("#addForm").valid()) {
+
+                //Call to controller for save the object and retrieve the new id from database, then this id will be inserted in the treeview
+                //In this example the id returned by the controllers is the variable nextId, only for tutorial porpouses.
+
+                var newNode = { id: nextId, text: $("#addForm").find("#Nombre").val() };
+
+                //Increment the id variable,
+                nextId++;
+
+
+                $("#tree").UifTreeView('createNode', selected, newNode);
+                $("#addForm").formReset();
+                $('#modalAdd').UifModal('hide');
+            }
+
+
+        });
+
+        $('#btnSaveEdit').click(function () {
+            $("#editForm").validate();
+
+            if ($("#editForm").valid()) {
+
+                //Call to controller for update the object.
+
+
+                //On success continue with this code.
+                $("#tree").UifTreeView('renameNode', selected, $("#editForm").find("#Nombre").val());
+                $("#addForm").formReset();
+                $('#modalEdit').UifModal('hide');
+            }
+
+
+        });
+
+        $('#tree').on('selected', function (event, data) {
+
+            alert("Id del elemento: " + data.id + " Nivel del elemento: " + data.level + " Padre del elemento: " + data.parent);
+        });
+
+    </script>
+}

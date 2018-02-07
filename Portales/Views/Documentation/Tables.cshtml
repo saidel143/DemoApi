@@ -1,0 +1,123 @@
+﻿@section Breadcrumb
+{
+    <ol class="breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Tablas</li>
+    </ol>
+}
+
+@{
+    ViewBag.Title = "Tablas";
+}
+
+
+<div class="uif-row">
+    <div class="uif-col-12">
+
+        <ul class="uif-tab" id="tab1">
+            <li class="active"><a href="#tabSingle">Selección Simple</a></li>
+            <li><a href="#tabMultiple">Selección Multiple</a></li>
+            <li><a href="#tabNone">Sin Selección</a></li>
+            <li><a href="#tabHidden">Columnas Ocultas</a></li>
+            <li><a href="#tabParameters">Datasource con parámetros</a></li>
+        </ul>
+
+        <div class="uif-tab-content">
+            <div class="active" id="tabSingle">
+                <table class="uif-table" data-source="/Documentation/GetRecords" id="tableSingle" data-exporttocsv="true" data-exportname="cultura" data-add="true" data-edit="true" data-delete="false" data-filter="true" data-selectiontype="single">
+                    <thead>
+                        <tr>
+                            <th data-property="Id">Id</th>
+                            <th data-property="Empresa">Empresa</th>
+                            <th data-property="Ciudad">Ciudad</th>
+                            <th data-property="Pais">País</th>
+                            <th data-property="Monto" data-type="currency">Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="tabMultiple">
+                <table class="uif-table" data-source="/Documentation/GetRecords" id="tableMultiple" data-exporttocsv="true" data-edit="true" data-delete="true" data-selectiontype="multiple" data-filter="true" data-paginate="true" data-order="false">
+                    <thead>
+                        <tr>
+                            <th data-property="Id">Id</th>
+                            <th data-property="Empresa">Empresa</th>
+                            <th data-property="Ciudad">Ciudad</th>
+                            <th data-property="Pais">País</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="tabNone">
+                <table class="uif-table" data-source="/Documentation/GetRecords" id="tableNone" data-selectiontype="none">
+                    <thead>
+                        <tr>
+                            <th data-property="Id">Id</th>
+                            <th data-property="Empresa">Empresa</th>
+                            <th data-property="Ciudad">Ciudad</th>
+                            <th data-property="Pais">País</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="tabHidden">
+                <table class="uif-table" data-source="/Documentation/GetRecords" id="tableHidden">
+                    <thead>
+                        <tr>
+                            <th data-property="Id">Id</th>
+                            <th data-property="Empresa">Empresa</th>
+                            <th data-property="Ciudad" data-visible="false">Ciudad</th>
+                            <th data-property="Pais">País</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="tabParameters">
+                <table class="uif-table" data-source="/Documentation/GetRecordsWithParameters?param1=@ViewBag.Param1&param2=@ViewBag.Param2" id="tableParameters">
+                    <thead>
+                        <tr>
+                            <th data-property="Id">Id</th>
+                            <th data-property="Empresa">Empresa</th>
+                            <th data-property="Ciudad">Ciudad</th>
+                            <th data-property="Pais">País</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#tableSingle').on('rowSelected', function (event, data, position) {
+            alert("Ha seleccionado los siguientes valores: " + data.Id + ", " + data.Empresa + ", " + data.Ciudad + ", " + data.Pais);
+            alert("La posición es: " + position);
+        });
+
+        $('#tableHidden').on('rowSelected', function (event, data, position) {
+            alert("Ha seleccionado los siguientes valores: " + data.Id + ", " + data.Empresa + ", " + data.Ciudad + ", " + data.Pais);
+            alert("La posición es: " + position);
+        });
+
+        $('#tableMultiple').on('selectAll', function (event) {
+
+            alert("Se han seleccionado todos los items.");
+        });
+
+        $('#tab1').on('change', function (event, newly, old) {
+            alert("Ha seleccionado el tab: " + newly);
+            alert("El tab anterior era: " + old)
+        });
+
+    </script>
+}

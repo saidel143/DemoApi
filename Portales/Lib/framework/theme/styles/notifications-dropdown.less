@@ -1,0 +1,46 @@
+.notifications-dropdown {
+    padding: 0;
+    transform: translate(-60%);
+    li {
+        background: rgb(241, 245, 248);
+        background: -moz-linear-gradient(top, rgba(241, 245, 248, 1) 0%, rgba(243, 244, 246, 1) 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(241, 245, 248, 1)), color-stop(100%, rgba(243, 244, 246, 1)));
+        background: -webkit-linear-gradient(top, rgba(241, 245, 248, 1) 0%, rgba(243, 244, 246, 1) 100%);
+        background: -o-linear-gradient(top, rgba(241, 245, 248, 1) 0%, rgba(243, 244, 246, 1) 100%);
+        background: -ms-linear-gradient(top, rgba(241, 245, 248, 1) 0%, rgba(243, 244, 246, 1) 100%);
+        background: linear-gradient(to bottom, rgba(241, 245, 248, 1) 0%, rgba(243, 244, 246, 1) 100%);
+        border-bottom: 1px solid #ddd;
+        a {
+            line-height: 2.5;
+            min-width: 230px;
+            font-weight: 700;
+            i {
+                float: right;
+                line-height: 3.2em;
+                font-size: .8em;
+                color: #E2490D;
+            }
+        }
+        a.see-all {
+            line-height: 1.8em;
+            color: #fff;
+            background: #989EAC;
+            text-align: center
+        }
+        a.see-all:hover {
+            background: #989EAC;
+        }
+    }
+    li.readed, li.readed a:hover {
+        background: #fff;
+        a {
+            font-weight: 400;
+            i {
+                color: #C6CDD7;
+            }
+        }
+    }
+    li:last-child {
+        border-bottom: none;
+    }
+}

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Editor";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Datepicker</li>
+    </ol>
+}
+@section Toolbar
+{
+    <div class="app-header">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary" id="btnHtml"> Obtener Html</button>
+        </div>
+    </div>
+}
+<div class="uif-panel" data-title="Editor">
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <div class="uif-alert" id="alert"></div>
+        </div>
+    </div>
+    <div class="uif-row">
+        <div class="uif-col-12">
+            <textarea id="editor1" rows="10" cols="80" class="uif-editor"></textarea>
+        </div>
+    </div>
+
+
+
+</div>
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $('#editor1').UifEditor('setHtmlText', 'Esto es una <b>prueba</b>.');
+
+
+        $('#btnHtml').click(function () {
+
+
+
+
+            $("#alert").UifAlert('show', $('#editor1').UifEditor('getHtmlText'), 'info');
+
+
+
+        });
+
+    </script>
+
+}

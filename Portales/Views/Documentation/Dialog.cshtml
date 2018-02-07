@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Dialog";
+}
+@section Breadcrumb
+{
+    <ol class="breadcrumb global-header-breadcrumb">
+        <li><a href="/Home">Documentación</a></li>
+
+        <li class="active">Confirm</li>
+    </ol>
+}
+<div class="uif-panel" data-title="Tipo de Dialogos">
+    <button class="btn btn-primary btn-confirm-example">Confirm</button>
+    <button class="btn btn-primary btn-alert-example">Alert</button>
+    <button class="btn btn-default" id="modal-button">En Modal</button>
+
+</div>
+
+@section Modals
+{
+    <form id="modalForm">
+        <div class="uif-modal" id="modalDialog">
+            <div class="uif-modalbody">
+                <button class="btn btn-primary btn-confirm-example" onclick="return false">Confirm</button>
+                <button class="btn btn-primary btn-alert-example" onclick="return false">Alert</button>
+            </div>
+
+            <div class="uif-modalbuttons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnSaveAdd" onclick="return false">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+}
+
+
+
+
+@section Scripts
+{
+    @*<script type="text/javascript">
+
+            $('.btn-confirm-example').click(function () {
+                $.UifDialog('confirm', { 'message': 'Desea Confirmar?' }, function (result) {
+                    $.UifNotify('show', { 'type': 'info', 'message': 'El resultado del dialogo fue: ' + result, 'autoclose': true });
+                });
+            });
+
+            $('.btn-alert-example').click(function () {
+
+
+                //$.UifDialog('alert', { 'message': 'Bienvenido a uif 2 touch' });
+            });
+
+            $('#modal-button').click(function () {
+
+            });
+
+        </script>*@
+
+    <script src="@Url.Content("~/Scripts/app/controllers/DialogCtrl.js")"></script>
+}

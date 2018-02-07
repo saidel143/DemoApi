@@ -1,0 +1,52 @@
+nav {
+	display: flex;
+  flex-direction: column;
+	a {
+		width: 90px;
+		height: 95px;
+		display: block;
+		text-align: center;
+		display: flex;
+		align-items: center;
+    background: #2b3036;
+    border-bottom: 2px solid;
+    color: #7a8599;
+		div {
+			width: 100%;
+      i {
+        font-size: 1.5em !important;
+     }
+		}
+
+	}
+	a:hover {
+		text-decoration: none;
+    color: #7a8599;
+	}
+	.active {
+			color: #fff;
+			background: $blue;
+      border-bottom: $blue;
+	}
+  .active:hover {
+      color: #fff;
+  }
+  .nav-green {
+    i {
+      color: $green;
+    }
+    border-color: $green;
+  }
+  .nav-red {
+    i {
+      color: $red;
+    }
+    border-color: $red;
+  }
+  .nav-light-blue {
+    i {
+      color: $light-blue;
+    }
+    border-color: $light-blue;
+  }
+}
